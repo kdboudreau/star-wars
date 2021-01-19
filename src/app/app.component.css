@@ -1,3 +1,7 @@
 .container {
   padding: 30px;
 }
+
+.app-full-col {
+  width: 100%;
+}
