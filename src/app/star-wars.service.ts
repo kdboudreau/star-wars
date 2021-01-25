@@ -1,9 +1,19 @@
+import { Injectable } from "@angular/core";
+import { LogService } from "./log.service";
+
+@Injectable()
 export class StarWarsService {
   private characters = [
     { name: 'Luke Skywalker', side: ''},
     { name: 'Darth Vader', side: ''},
     { name: 'Han Solo', side: ''},
   ];
+
+  private logService: LogService;
+
+  constructor(logService: LogService) {
+    this.logService = logService;
+  }
 
   getCharacters(chosenList) {
     if (chosenList === 'all') {
@@ -19,6 +29,7 @@ export class StarWarsService {
       return char.name === charInfo.name;
     })
     this.characters[pos].side = charInfo.side;
+    this.logService.writeLog('changed side of  ' + charInfo.name + ', new side: ' + charInfo.side);
   }
 
 }
